@@ -1,0 +1,43 @@
+// Navbar
+.navbar {
+    display: flex;
+    justify-content: flex-start; /* Align items to the start (left) */
+    align-items: center;
+    position: fixed; /* Make the navbar fixed to the top of the screen */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px; /* Set the fixed height of the navbar */
+    padding-left: 20px; /* Add some padding to the left for spacing */
+    background-color: transparent; /* Set the background color to transparent */
+}
+
+.navbar img {
+    width: 9rem; /* Set a specific width for the logo */
+    height: auto;
+    margin-right: 10px; /* Add spacing between the logo and links */
+}
+
+.navbar a {
+    color: #181818;
+    font-weight: 700;
+    font-size: 1.2rem;
+    text-align: center;
+    text-decoration: none;
+    padding: 12px 20px;
+    margin: 0 10px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+
+    &:hover {
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 2.5);
+    }
+}
+
+/* Optional: Adjust the size of the navigation links on smaller screens */
+@media (max-width: 768px) {
+    .navbar a {
+        font-size: 14px;
+        padding: 10px 15px;
+    }
+}
