@@ -48,3 +48,6 @@ EARLY STAGE REQUIREMENTS (updated as needed):
 
 <b>Testing:</b>
 - To be updated as needed
+
+  <img src="https://github.com/smithd36/enrollment-website/assets/90289165/b52277dd-ea1c-4606-8c5f-3a9fe2b2a35c" alt="full-page" />
+  <img src="https://github.com/smithd36/enrollment-website/assets/90289165/b942803c-067b-48b8-95bb-c484e383f1c2" alt="half-page" />
