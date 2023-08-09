@@ -1,43 +1,180 @@
-// Navbar
 .navbar {
-    display: flex;
-    justify-content: flex-start; /* Align items to the start (left) */
-    align-items: center;
-    position: fixed; /* Make the navbar fixed to the top of the screen */
+    position: fixed;
     top: 0;
     left: 0;
+    width: 180px;
+    height: 100vh;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transform: translateX(-100%);
+    transition: transform 0.3s;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+        z-index: -1;
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    &.navbar-open {
+        transform: translateX(0);
+
+        &::before {
+            opacity: 1;
+        }
+    }
+}
+.navbar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
     width: 100%;
-    height: 60px; /* Set the fixed height of the navbar */
-    padding-left: 20px; /* Add some padding to the left for spacing */
-    background-color: transparent; /* Set the background color to transparent */
+    box-sizing: border-box;
 }
 
-.navbar img {
-    width: 9rem; /* Set a specific width for the logo */
+.logo {
+    width: 120px; /* Adjust the width as needed */
     height: auto;
-    margin-right: 10px; /* Add spacing between the logo and links */
+    margin: 1rem 0.8rem;
+    padding: 0;
+    border: none;
+    display: inline-block;
+    vertical-align: middle;
 }
 
-.navbar a {
-    color: #181818;
-    font-weight: 700;
-    font-size: 1.2rem;
-    text-align: center;
-    text-decoration: none;
-    padding: 12px 20px;
-    margin: 0 10px;
-    border-radius: 4px;
-    transition: all 0.3s ease;
+.navbar-toggle-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 2rem;
+    position: relative;
+    z-index: 1010;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden; /* Hide overflowing content */
+    top: -70px;
+    transform: scale(1.5);
 
-    &:hover {
-        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 2.5);
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 0 20px 20px 0;
+        border-color: transparent #000 transparent transparent;
+        z-index: -1; /* Place triangle behind icon */
+        transition: opacity 0.3s;
+        opacity: 0; /* Initially hidden */
+    }
+
+    &:hover::before {
+        opacity: 1; /* Show triangle on hover */
+    }
+
+    .navbar-toggle-icon {
+        display: block;
+        width: 20px;
+        height: 2px;
+        background-color: #333;
+        position: relative;
+        z-index: 1; /* Place icon above triangle */
+
+        &:before,
+        &:after {
+            content: '';
+            width: 20px;
+            height: 2px;
+            background-color: #333;
+            position: absolute;
+            left: 0;
+            transition: transform 0.3s, top 0.3s, opacity 0.3s;
+        }
+
+        &:before {
+            top: -6px;
+        }
+
+        &:after {
+            top: 6px;
+        }
+    }
+
+    &.active {
+        .navbar-toggle-icon {
+            transform: rotate(45deg);
+            top: 0;
+
+            &:before {
+                top: 0;
+                transform: rotate(90deg);
+                opacity: 0;
+            }
+
+            &:after {
+                top: 0;
+                transform: rotate(90deg);
+                opacity: 0;
+            }
+        }
     }
 }
 
-/* Optional: Adjust the size of the navigation links on smaller screens */
-@media (max-width: 768px) {
-    .navbar a {
-        font-size: 14px;
-        padding: 10px 15px;
+
+.navbar-links {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+
+    .navbar-link {
+        text-decoration: none;
+        color: #fff;
+        border: 2px solid;
+        padding: 0.7rem 1rem;
+        font-size: 19px;
+        margin-bottom: 0.125rem;
+        transition: all 0.5s;
+        border-radius: 15px;
+
+        &:hover {
+            color: #ffb49e;
+            transform: translateX(10px);
+        }
+    }
+    .navbar-button {
+        color: #fff;
+        font-family: 'Bebas Neue', sans-serif;
+        font-family: 'Edu SA Beginner', cursive;        
+        background: transparent;
+        line-height: 1.8rem;
+        padding: 10px 20px;
+        font-size: 19px;
+        border: 2px solid #fff;
+        border-radius: 15px;
+        cursor: pointer;
+        margin: 0.5rem 0;
+        transition: all 0.5s ease-in-out;
+        width: 100%;
+        height: 100%;
+        text-align: left;
+
+
+        &:hover {
+            color: #ffb49e;
+            transform: translateX(10px);
+            border-color: #ffb49e;
+        }
     }
 }

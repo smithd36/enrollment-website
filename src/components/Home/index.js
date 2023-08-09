@@ -1,18 +1,54 @@
+import React, { useState } from 'react';
+import News from '../News';
 import './index.scss';
-import React from 'react';
+import Enroll from '../Enroll';
+import Volunteer from '../Volunteer';
 
 const Home = () => {
+    const [showChildSignUpForm, setShowChildSignUpForm] = useState(false);
+    const [showVolunteerForm, setShowVolunteerForm] = useState(false);
+
+    const toggleChildSignUpForm = () => {
+        setShowChildSignUpForm(!showChildSignUpForm);
+        setShowVolunteerForm(false);
+    };
+
+    const toggleVolunteerForm = () => {
+        setShowVolunteerForm(!showVolunteerForm);
+        setShowChildSignUpForm(false);
+    };
+
     return (
         <div className="homepage-container">
-            <div id="home" className={`welcome partial-bg`}>
-                <h1>Welcome to Our Site</h1>
-                <h3>Corona Bible Study</h3>
-                <p>Welcome to the Corona Bible Study website! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sit amet scelerisque nulla. Phasellus in quam eu metus fermentum feugiat sodales eget elit. Donec id dignissim dui. Maecenas aliquam gravida enim, quis vestibulum leo eleifend sed. Nulla dapibus nunc at nibh euismod faucibus eget vel turpis. Maecenas faucibus varius elit, vel porta tellus. Cras ligula augue, feugiat ut finibus eget, ullamcorper eget ex. Nulla in tellus lobortis, facilisis orci id, pulvinar nibh. In bibendum purus ex, in molestie orci rutrum ac. Proin imperdiet iaculis mattis. Aenean vel lacinia ex.</p>
-                <button className="btn get-started">News</button>
-                <button className="btn get-started">Study Sign-Up</button>
-                <button className="btn get-started">Volunteer</button>
-
+            <div className="welcome">
+                <h1>Corona Bible Study</h1>
+                <p>Welcome to the Corona Bible Study website!</p>
+                <button className="welcome-button" onClick={toggleChildSignUpForm}>
+                    Student Sign Up
+                </button>
+                <button className="welcome-button" onClick={toggleVolunteerForm}>
+                    Volunteer Sign Up
+                </button>
             </div>
+            <News />
+
+            {showChildSignUpForm && (
+                <div className="form-popup-overlay">
+                    <div className="form-popup">
+                        {/* Child Sign Up Form */}
+                        <Enroll />
+                    </div>
+                </div>
+            )}
+
+            {showVolunteerForm && (
+                <div className="form-popup-overlay">
+                    <div className="form-popup">
+                        {/* Volunteer Form */}
+                        <Volunteer />
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
